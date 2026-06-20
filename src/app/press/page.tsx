@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PageHero, SectionBlock } from "@/components/PageSections";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { PageHero, SectionBlock } from "@/components/PageSections";
 import { CopyButton } from "@/components/ui/CopyButton";
-import { announceContent } from "@/lib/docs-content";
+import { readSiteContent } from "@/lib/cms/site-content-store";
 
 export const metadata: Metadata = {
   title: "Press Kit",
@@ -20,9 +20,9 @@ const brandAssets = [
   { href: "/brand/sika-favicon.svg", label: "Favicon", type: "SVG" },
 ] as const;
 
-const boilerplate = `SikaChain is a blockchain settlement network built for mobile money, merchant payments, remittances, and low-cost digital transfers. Its first flagship application, Sika App, lets users send money, pay merchants, and access cash-in/cash-out services — without exposing everyday users to volatile crypto assets. SikaChain is financial infrastructure. Sika App is the user product. Twenty-one genesis node producers form the institutional trust layer. Launch market: Ghana first.`;
+export default async function PressPage() {
+  const { press, announce } = await readSiteContent();
 
-export default function PressPage() {
   return (
     <>
       <PageHero
@@ -37,8 +37,8 @@ export default function PressPage() {
       <SectionBlock tag="Boilerplate" title="Company description">
         <FadeIn>
           <div className="glass-panel glow-gold p-8 md:p-10">
-            <p className="leading-relaxed text-sika-cream/78">{boilerplate}</p>
-            <CopyButton text={boilerplate} label="Copy boilerplate" />
+            <p className="leading-relaxed text-sika-cream/78">{press.boilerplate}</p>
+            <CopyButton text={press.boilerplate} label="Copy boilerplate" />
           </div>
         </FadeIn>
       </SectionBlock>
@@ -46,20 +46,12 @@ export default function PressPage() {
       <SectionBlock tag="Messaging" title="Key positioning" className="border-t border-white/10">
         <div className="grid gap-6 md:grid-cols-2">
           <div className="card border-sika-green/25">
-            <p className="text-xs font-semibold uppercase tracking-wider text-sika-green-bright">
-              Infrastructure
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-sika-cream/75">
-              {announceContent.infrastructureMessage}
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-sika-green-bright">Infrastructure</p>
+            <p className="mt-3 text-sm leading-relaxed text-sika-cream/75">{announce.infrastructureMessage}</p>
           </div>
           <div className="card border-sika-gold/25">
-            <p className="text-xs font-semibold uppercase tracking-wider text-sika-gold">
-              Consumer (Sika App)
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-sika-cream/75">
-              {announceContent.consumerMessage}
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-sika-gold">Consumer (Sika App)</p>
+            <p className="mt-3 text-sm leading-relaxed text-sika-cream/75">{announce.consumerMessage}</p>
           </div>
         </div>
       </SectionBlock>
@@ -93,10 +85,7 @@ export default function PressPage() {
         <FadeIn>
           <div className="glass-panel flex flex-col gap-6 p-8 md:flex-row md:items-center md:justify-between">
             <div>
-              <p className="text-sm leading-relaxed text-sika-cream/70">
-                For press, partnership, or genesis producer inquiries, use the producer application form or
-                contact through official channels once published.
-              </p>
+              <p className="text-sm leading-relaxed text-sika-cream/70">{press.mediaContact}</p>
             </div>
             <div className="flex flex-wrap gap-3">
               <Link href="/apply" className="btn-primary btn-shine text-sm">

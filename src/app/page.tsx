@@ -13,26 +13,28 @@ import {
   StatGrid,
 } from "@/components/PageSections";
 import { FadeIn, FadeInStagger } from "@/components/motion/FadeIn";
+import { readSiteContentSection } from "@/lib/cms/site-content-store";
 import {
   launchSequence,
-  positioning,
   producerComposition,
   timeline,
 } from "@/lib/content";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const home = await readSiteContentSection("home");
+
   return (
     <>
       <HeroCinematic
-        eyebrow="Ghana first · Africa next"
+        eyebrow={home.eyebrow}
         title={
           <>
             Settlement for{" "}
-            <span className="text-sika-green-bright">mobile money</span>
+            <span className="text-sika-green-bright">{home.heroHighlight}</span>
           </>
         }
-        subtitle={positioning.sikaChain}
-        description="SikaChain is financial infrastructure — not a consumer crypto product. Sika App is how people send, pay, and cash out. Twenty-one genesis node producers are the institutional trust layer."
+        subtitle={home.subtitle}
+        description={home.description}
         primaryCta={{ href: "/genesis", label: "Genesis Producer Program" }}
         secondaryCta={{ href: "/ghana", label: "Ghana launch strategy" }}
       />
@@ -41,20 +43,20 @@ export default function HomePage() {
 
       <SectionBlock
         tag="Positioning"
-        title="Infrastructure users can trust. Products users can understand."
-        lead="Do not lead with blockchain for consumers. Lead with money movement. Use SikaChain to win institutional credibility."
+        title={home.positioningTitle}
+        lead={home.positioningLead}
       >
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
           <FadeInStagger className="space-y-5">
             <AnimatedCard>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-gold">SikaChain</p>
               <h3 className="mt-3 font-display text-xl font-bold">The network</h3>
-              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{positioning.thesis}</p>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{home.sikaChainThesis}</p>
             </AnimatedCard>
             <AnimatedCard className="border-sika-green/25 glow-green">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-green-bright">Sika App</p>
               <h3 className="mt-3 font-display text-xl font-bold">The product</h3>
-              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{positioning.sikaApp}</p>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{home.sikaAppDescription}</p>
               <Link href="/sika-app" className="mt-5 inline-flex text-sm font-semibold text-sika-gold hover:underline">
                 Learn about Sika App →
               </Link>
@@ -62,9 +64,7 @@ export default function HomePage() {
             <AnimatedCard>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-gold">Genesis producers</p>
               <h3 className="mt-3 font-display text-xl font-bold">The trust layer</h3>
-              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">
-                Fintechs, banks, telecoms, universities, and community institutions securing the network from day one.
-              </p>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{home.producersDescription}</p>
               <Link href="/producers" className="mt-5 inline-flex text-sm font-semibold text-sika-gold hover:underline">
                 Producer requirements →
               </Link>

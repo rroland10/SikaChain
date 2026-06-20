@@ -5,6 +5,7 @@ export const docsSections = [
       { label: "What is SikaChain?", href: "/", description: "Settlement network positioning" },
       { label: "Genesis Producer Program", href: "/genesis", description: "Recruiting 21 founding producers" },
       { label: "Launch announcement", href: "/announce", description: "Official GTM messaging" },
+      { label: "Insights", href: "/insights", description: "News, analysis, and network updates" },
       { label: "Press kit", href: "/press", description: "Brand assets and boilerplate" },
     ],
   },
@@ -78,6 +79,7 @@ export const secondaryNavLinks = [
   { href: "/developers", label: "Developers" },
   { href: "/explorer", label: "Explorer" },
   { href: "/announce", label: "Announce" },
+  { href: "/insights", label: "Insights" },
   { href: "/press", label: "Press" },
   { href: "/status", label: "Status" },
 ] as const;

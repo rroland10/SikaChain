@@ -29,9 +29,10 @@ yarn-error.log*
 .env*.local
 .env
 
-# application submissions (local dev)
+# application submissions + CMS (local dev)
 /data/applications/
 /data/showcase/
+/data/content/
 
 # vercel
 .vercel

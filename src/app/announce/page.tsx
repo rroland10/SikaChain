@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero, SectionBlock } from "@/components/PageSections";
+import { ArticleBody } from "@/components/content/ArticleBody";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { announceContent } from "@/lib/docs-content";
+import { PageHero, SectionBlock } from "@/components/PageSections";
+import { readSiteContentSection } from "@/lib/cms/site-content-store";
 
 export const metadata: Metadata = {
   title: "Launch Announcement",
   description: "Official SikaChain launch messaging — mobile money settlement network launching in Ghana.",
 };
 
-export default function AnnouncePage() {
+export default async function AnnouncePage() {
+  const announce = await readSiteContentSection("announce");
+
   return (
     <>
       <PageHero
         eyebrow="Press & launch"
-        title={announceContent.headline}
-        lead={announceContent.subheadline}
+        title={announce.headline}
+        lead={announce.subheadline}
         imageSrc="/images/hero-ghana-mobile-money.png"
         primaryCta={{ href: "/genesis", label: "Genesis program" }}
         secondaryCta={{ href: "/docs", label: "Documentation" }}
@@ -24,11 +27,7 @@ export default function AnnouncePage() {
       <SectionBlock tag="Announcement" title="Official launch message">
         <FadeIn>
           <article className="glass-panel glow-gold space-y-6 p-8 md:p-10">
-            {announceContent.body.split("\n\n").map((para) => (
-              <p key={para.slice(0, 40)} className="leading-relaxed text-sika-cream/78">
-                {para}
-              </p>
-            ))}
+            <ArticleBody body={announce.body} />
           </article>
         </FadeIn>
       </SectionBlock>
@@ -39,12 +38,10 @@ export default function AnnouncePage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-sika-green-bright">
               Consumer message
             </p>
-            <p className="mt-4 font-display text-xl font-bold leading-snug">
-              {announceContent.consumerMessage}
-            </p>
-            <p className="mt-4 text-sm italic text-sika-cream/60">{announceContent.infrastructureMessage}</p>
+            <p className="mt-4 font-display text-xl font-bold leading-snug">{announce.consumerMessage}</p>
+            <p className="mt-4 text-sm italic text-sika-cream/60">{announce.infrastructureMessage}</p>
           </div>
-          {announceContent.quotes.map((q) => (
+          {announce.quotes.map((q) => (
             <div key={q.role} className="card">
               <p className="text-xs font-semibold uppercase tracking-wider text-sika-gold">{q.role}</p>
               <blockquote className="mt-4 font-serif text-lg italic leading-relaxed text-sika-gold-bright">
@@ -57,13 +54,7 @@ export default function AnnouncePage() {
 
       <SectionBlock tag="Next steps" title="Launch sequence" className="border-t border-white/10 pb-24">
         <ol className="space-y-4">
-          {[
-            "Announce SikaChain as mobile money settlement infrastructure",
-            "Launch the Genesis Producer Program — recruit 21 credible producers",
-            "Publish qualified candidates and run public testnet",
-            "Launch mainnet with explorer, governance portal, and producer dashboard",
-            "Open Sika App private beta in Ghana",
-          ].map((step, i) => (
+          {announce.launchSteps.map((step, i) => (
             <li key={step} className="card flex gap-4">
               <span className="font-display text-2xl font-extrabold text-sika-gold/40">
                 {String(i + 1).padStart(2, "0")}

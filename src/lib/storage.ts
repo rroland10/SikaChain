@@ -1,12 +1,14 @@
-import { mkdir, readdir, readFile, writeFile } from "fs/promises";
+import { mkdir, readdir, readFile, unlink, writeFile } from "fs/promises";
 import path from "path";
-import { list, put } from "@vercel/blob";
+import { del, list, put } from "@vercel/blob";
 
 export type StorageBackend = "local" | "blob";
 
 const LOCAL_ROOT = path.join(process.cwd(), "data");
 const APPLICATIONS_PREFIX = "applications/";
 const PROMOTED_PATH = "showcase/promoted.json";
+export const INSIGHTS_PREFIX = "content/insights/";
+export const SITE_CONTENT_PATH = "content/site.json";
 
 export function getStorageBackend(): StorageBackend {
   return process.env.BLOB_READ_WRITE_TOKEN ? "blob" : "local";
@@ -101,4 +103,44 @@ export async function readPromotedJson<T>(): Promise<T[]> {
 
 export async function writePromotedJson<T>(candidates: T[]): Promise<void> {
   await saveJsonObject(PROMOTED_PATH, candidates);
+}
+
+async function listBlobJsonIds(prefix: string): Promise<string[]> {
+  const token = blobToken();
+  const { blobs } = await list({ prefix, token });
+  return blobs
+    .filter((blob) => blob.pathname.endsWith(".json"))
+    .map((blob) => blob.pathname.replace(prefix, "").replace(/\.json$/, ""));
+}
+
+export async function listJsonIds(prefix: string): Promise<string[]> {
+  if (getStorageBackend() === "blob") {
+    return listBlobJsonIds(prefix);
+  }
+
+  try {
+    const dir = path.join(LOCAL_ROOT, prefix);
+    const files = await readdir(dir);
+    return files.filter((file) => file.endsWith(".json")).map((file) => file.replace(/\.json$/, ""));
+  } catch {
+    return [];
+  }
+}
+
+export async function deleteJsonObject(pathname: string): Promise<void> {
+  if (getStorageBackend() === "blob") {
+    const token = blobToken();
+    const { blobs } = await list({ prefix: pathname, token });
+    const match = blobs.find((blob) => blob.pathname === pathname);
+    if (match) {
+      await del(match.url, { token });
+    }
+    return;
+  }
+
+  try {
+    await unlink(path.join(LOCAL_ROOT, pathname));
+  } catch {
+    // already removed
+  }
 }

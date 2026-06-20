@@ -39,7 +39,7 @@ Verify chain, marketing site, explorer, and Sika App are all up: `npm run verify
 - **Luxury glassmorphic UI** with Framer Motion animations
 - **AI concierge** (✦ button) — local knowledge base; optional OpenAI via `OPENAI_API_KEY`
 - **Producer applications** — live form at `/apply`; local `data/` in dev, **Vercel Blob** in production
-- **Admin dashboard** — `/admin` (requires `ADMIN_TOKEN` in `.env`)
+- **Admin CMS** — `/admin` edits homepage, announce, press copy; draft/publish insights; review applications
 - **Candidate showcase** — `/candidates` public transparency page
 - **Email notifications** — Resend: admin alert + applicant confirmation on apply; status emails on review
 - **Network status** — live SikaChainDev RPC widget on home page
@@ -85,7 +85,9 @@ See `.env.example`:
 | `/ghana` | Ghana-first launch strategy |
 | `/sika-app` | Sika App product overview |
 | `/apply` | Live producer application form |
-| `/admin` | Review, promote, export CSV |
+| `/admin` | CMS — site content, insights, applications, showcase |
+| `/insights` | Published network insights and analysis |
+| `/insights/[slug]` | Individual insight article |
 | `/explorer` | Block explorer with pagination and tx lookup |
 | `/explorer/block/[num]` | Block detail with action list |
 | `/press` | Press kit — brand assets and boilerplate |

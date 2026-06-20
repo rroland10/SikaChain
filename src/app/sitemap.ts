@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/explorer",
     "/testnet",
     "/announce",
+    "/insights",
     "/press",
     "/status",
     "/developers",
