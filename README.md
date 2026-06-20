@@ -4,6 +4,8 @@ Marketing and go-to-market site for **SikaChain** — the blockchain settlement 
 
 This is the **infrastructure** site. The consumer mobile money product is [**Sika App**](../Sika%20app/) (separate repo).
 
+**Repository:** [github.com/rroland10/SikaChain](https://github.com/rroland10/SikaChain)
+
 ## Positioning
 
 | Layer | Role |
@@ -83,9 +85,12 @@ See `.env.example`:
 
 ## Deploy (Vercel)
 
+**Recommended:** [Import from GitHub](https://vercel.com/new) → `rroland10/SikaChain` → configure env vars → Deploy.
+
 ```bash
-npm run deploy          # production (npx vercel --prod)
-npm run deploy:preview  # preview deployment
+vercel login          # one-time
+npm run deploy        # production CLI deploy
+npm run deploy:preview
 ```
 
 GitHub Actions runs `lint` + `build` on push to `main`.
