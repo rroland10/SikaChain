@@ -30,6 +30,8 @@ Sync chain constants from Spring: `npm run sync:chain` (reads `../AntelopeOS/spr
 
 Start local chain + print dev URLs: `npm run dev:stack`
 
+Verify chain, marketing site, explorer, and Sika App are all up: `npm run verify:stack`
+
 ## Features
 
 - **Luxury glassmorphic UI** with Framer Motion animations

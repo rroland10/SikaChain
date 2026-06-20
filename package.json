@@ -10,7 +10,8 @@
     "deploy": "npx vercel --prod",
     "deploy:preview": "npx vercel",
     "sync:chain": "node scripts/sync-chain-config.mjs",
-    "dev:stack": "bash scripts/dev-stack.sh"
+    "dev:stack": "bash scripts/dev-stack.sh",
+    "verify:stack": "bash scripts/verify-stack.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.4.1",
