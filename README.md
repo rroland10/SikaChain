@@ -99,6 +99,17 @@ Set in the Vercel dashboard: `ADMIN_TOKEN`, `NEXT_PUBLIC_SITE_URL`, `BLOB_READ_W
 
 Check deployment: `GET /api/health` returns `{ storage: "blob", ... }`.
 
+### Custom domain
+
+In Vercel → Project → **Settings → Domains**, add e.g. `sikachain.com` and `www.sikachain.com`.
+
+| Type | Name | Value |
+| --- | --- | --- |
+| A | `@` | `76.76.21.21` |
+| CNAME | `www` | `cname.vercel-dns.com` |
+
+Then set `NEXT_PUBLIC_SITE_URL=https://sikachain.com` and redeploy.
+
 
 ## Related projects
 

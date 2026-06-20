@@ -52,6 +52,10 @@ export const metadata: Metadata = {
     description: site.description,
     images: ["/images/hero-ghana-mobile-money.png"],
   },
+  alternates: {
+    canonical: "/",
+  },
+  category: "finance",
 };
 
 export default function RootLayout({
