@@ -4,7 +4,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SPRING_SCRIPTS="${SPRING_SCRIPTS:-${ROOT}/../AntelopeOS/spring/sikachaindev/scripts}"
-Sika_APP_DIR="${SIKA_APP_DIR:-${ROOT}/../Sika app}"
+SIKA_APP_DIR="${SIKA_APP_DIR:-${ROOT}/../Sika app}"
 SITE_PORT="${SITE_PORT:-3004}"
 APP_PORT="${APP_PORT:-3003}"
 RPC_URL="${SIKACHAIN_RPC_URL:-http://127.0.0.1:8888}"
