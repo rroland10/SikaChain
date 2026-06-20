@@ -3,6 +3,7 @@ import { HeroCinematic } from "@/components/ui/HeroCinematic";
 import { LuxuryImageFrame } from "@/components/ui/LuxuryImageFrame";
 import { MetricsTicker } from "@/components/ui/MetricsTicker";
 import { NetworkStatus } from "@/components/ui/NetworkStatus";
+import { EcosystemStack } from "@/components/ui/EcosystemStack";
 import { ProducerCompositionChart } from "@/components/ui/ProducerCompositionChart";
 import {
   AnimatedCard,
@@ -85,6 +86,9 @@ export default function HomePage() {
         className="border-t border-white/10"
       >
         <NetworkStatus />
+        <div className="mt-8">
+          <EcosystemStack />
+        </div>
       </SectionBlock>
 
       <SectionBlock

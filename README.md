@@ -28,6 +28,8 @@ Open [http://localhost:3004](http://localhost:3004).
 
 Sync chain constants from Spring: `npm run sync:chain` (reads `../AntelopeOS/spring/sikachaindev/chain.json`).
 
+Start local chain + print dev URLs: `npm run dev:stack`
+
 ## Features
 
 - **Luxury glassmorphic UI** with Framer Motion animations

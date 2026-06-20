@@ -5,6 +5,7 @@ import { GlassCTA } from "@/components/ui/GlassCTA";
 import { PhoneMockup } from "@/components/ui/PhoneMockup";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { positioning, sikaAppFeatures } from "@/lib/content";
+import { getSikaAppUrl } from "@/lib/ecosystem";
 
 export const metadata: Metadata = {
   title: "Sika App",
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function SikaAppPage() {
+  const sikaAppUrl = getSikaAppUrl();
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-white/10">
@@ -28,8 +31,11 @@ export default function SikaAppPage() {
               <Link href="/ghana" className="btn-primary btn-shine">
                 Ghana rollout plan
               </Link>
-              <Link href="http://localhost:3003" className="btn-secondary glass-button">
-                Open dev app
+              <a href={sikaAppUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary glass-button">
+                Open dev app ↗
+              </a>
+              <Link href="/developers" className="btn-secondary glass-button">
+                Dev setup
               </Link>
             </div>
           </FadeIn>
@@ -135,7 +141,7 @@ export default function SikaAppPage() {
         title="SikaChain = infrastructure · Sika App = product"
         description="This site covers the network and genesis program. The consumer mobile money experience lives in Sika App — launching in Ghana first."
         primary={{ href: "/ghana", label: "Ghana launch strategy" }}
-        secondary={{ href: "/", label: "Back to SikaChain" }}
+        secondary={{ href: sikaAppUrl, label: "Open Sika App" }}
       />
     </>
   );

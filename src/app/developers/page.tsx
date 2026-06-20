@@ -5,6 +5,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { CodeBlock } from "@/components/ui/CodeBlock";
 import { devQuickStart, sikaChainDev } from "@/lib/chain-constants";
 import { chainConfig } from "@/lib/chain-client";
+import { ecosystemProjects, getSikaAppUrl } from "@/lib/ecosystem";
 
 export const metadata: Metadata = {
   title: "Developer Quickstart",
@@ -54,9 +55,28 @@ export default function DevelopersPage() {
         </p>
       </SectionBlock>
 
+      <SectionBlock tag="Ecosystem" title="Monorepo projects" className="border-t border-white/10">
+        <div className="grid gap-4 md:grid-cols-2">
+          {ecosystemProjects.map((project) => (
+            <div key={project.name} className="card p-5">
+              <p className="font-display font-bold text-sika-gold">{project.name}</p>
+              <p className="mt-2 text-sm text-sika-cream/65">{project.role}</p>
+              <p className="mt-2 font-mono text-xs text-sika-cream/45">{project.path}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-sm text-sika-cream/55">
+          Sika App dev URL:{" "}
+          <a href={getSikaAppUrl()} className="text-sika-gold hover:underline">
+            {getSikaAppUrl()}
+          </a>
+        </p>
+      </SectionBlock>
+
       <SectionBlock tag="Setup" title="Local environment" className="border-t border-white/10">
         <FadeIn>
           <div className="space-y-4">
+            <CodeBlock label="Start full dev stack (chain + URLs)" code="npm run dev:stack" />
             <CodeBlock label="Start SikaChainDev (Spring + keosd)" code={devQuickStart.startChain} />
             <CodeBlock label="Full bootstrap (wallet + deploy contracts)" code={devQuickStart.bootstrap} />
             <CodeBlock label="Wire Sika App to dev chain" code={devQuickStart.wireSikaApp} />

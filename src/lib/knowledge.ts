@@ -115,7 +115,7 @@ export const knowledgeChunks: KnowledgeChunk[] = [
   {
     id: "developers",
     topic: "Developer quickstart",
-    text: "Build on SikaChainDev at /developers — chain ID, RPC, WharfKit SessionKit snippet, cleos commands, and local Spring node setup synced from sikachaindev/chain.json.",
+    text: "Build on SikaChainDev at /developers — chain ID, RPC, WharfKit SessionKit snippet, cleos commands, and local Spring node setup synced from sikachaindev/chain.json. Run npm run dev:stack to start the chain and print local URLs.",
     keywords: ["developer", "rpc", "wharfkit", "cleos", "sdk", "build", "integrate", "chain id"],
     link: "/developers",
   },

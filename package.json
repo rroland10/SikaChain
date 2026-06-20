@@ -9,7 +9,8 @@
     "lint": "next lint",
     "deploy": "npx vercel --prod",
     "deploy:preview": "npx vercel",
-    "sync:chain": "node scripts/sync-chain-config.mjs"
+    "sync:chain": "node scripts/sync-chain-config.mjs",
+    "dev:stack": "bash scripts/dev-stack.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.4.1",
