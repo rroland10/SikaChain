@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { BlockDetailView } from "@/components/explorer/BlockDetailView";
 
 type PageProps = {
-  params: { num: string };
+  params: Promise<{ num: string }>;
 };
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const blockNum = parseInt(params.num, 10);
-  const label = Number.isNaN(blockNum) ? params.num : `#${blockNum.toLocaleString()}`;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { num } = await params;
+  const blockNum = parseInt(num, 10);
+  const label = Number.isNaN(blockNum) ? num : `#${blockNum.toLocaleString()}`;
 
   return {
     title: `Block ${label}`,
@@ -15,8 +16,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function BlockDetailPage({ params }: PageProps) {
-  const blockNum = parseInt(params.num, 10);
+export default async function BlockDetailPage({ params }: PageProps) {
+  const { num } = await params;
+  const blockNum = parseInt(num, 10);
 
   if (Number.isNaN(blockNum) || blockNum < 1) {
     return (
