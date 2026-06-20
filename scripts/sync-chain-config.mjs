@@ -29,6 +29,8 @@ const config = {
   rpcUrl: raw.url,
   walletUrl: raw.walletUrl,
   appUrl: raw.appUrl,
+  websiteUrl: raw.websiteUrl,
+  websitePort: raw.websitePort,
   symbol: raw.symbol,
   tokenContract: raw.tokenContract,
   rexContract: raw.rexContract,
@@ -65,8 +67,7 @@ export const devQuickStart = {
   deployContracts: \`./deploy-sika-system.sh\`,
   wireSikaApp: \`cp "../Sika app/.env.sikachaindev" "../Sika app/.env.local"
 cd "../Sika app" && npm run dev\`,
-  wireWebsite: \`cp .env.example .env
-npm run dev   # http://localhost:3004\`,
+  wireWebsite: \`bash "../AntelopeOS/spring/sikachaindev/scripts/start-web.sh"\`,
   cleosInfo: \`cleos --url ${config.rpcUrl} get info\`,
   wharfkitSnippet: \`${wharfkitSnippet.replace(/`/g, "\\`")}\`,
 } as const;

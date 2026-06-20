@@ -1,13 +1,11 @@
 import { sikaChainDev } from "@/lib/chain-constants";
 
-const siteUrl = () => process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3004";
-
 export function getSikaAppUrl(): string {
   return process.env.NEXT_PUBLIC_SIKA_APP_URL || sikaChainDev.appUrl;
 }
 
 export function getSiteUrl(): string {
-  return siteUrl();
+  return process.env.NEXT_PUBLIC_SITE_URL || sikaChainDev.websiteUrl || "http://localhost:3004";
 }
 
 export const ecosystemStack = [

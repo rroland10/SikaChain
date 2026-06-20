@@ -8,6 +8,8 @@ export const sikaChainDev = {
   "rpcUrl": "http://127.0.0.1:8888",
   "walletUrl": "http://127.0.0.1:8899",
   "appUrl": "http://127.0.0.1:3003",
+  "websiteUrl": "http://127.0.0.1:3004",
+  "websitePort": 3004,
   "symbol": "SIKA",
   "tokenContract": "sika.token",
   "rexContract": "sika.rex",
@@ -46,8 +48,7 @@ export const devQuickStart = {
   deployContracts: `./deploy-sika-system.sh`,
   wireSikaApp: `cp "../Sika app/.env.sikachaindev" "../Sika app/.env.local"
 cd "../Sika app" && npm run dev`,
-  wireWebsite: `cp .env.example .env
-npm run dev   # http://localhost:3004`,
+  wireWebsite: `bash "../AntelopeOS/spring/sikachaindev/scripts/start-web.sh"`,
   cleosInfo: `cleos --url http://127.0.0.1:8888 get info`,
   wharfkitSnippet: `import { SessionKit } from "@wharfkit/session";
 

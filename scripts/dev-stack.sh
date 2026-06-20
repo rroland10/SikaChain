@@ -40,7 +40,8 @@ echo "  Admin            http://localhost:${SITE_PORT}/admin"
 echo "  Chain RPC        ${RPC_URL}"
 echo ""
 echo "=== Start in separate terminals ==="
-echo "  Website:  cd \"${ROOT}\" && npm run dev"
+echo "  Website:  ${SPRING_SCRIPTS}/start-web.sh"
+echo "  Or:       cd \"${ROOT}\" && npm run dev"
 if [[ -d "${SIKA_APP_DIR}" ]]; then
   echo "  Sika App: ${SPRING_SCRIPTS}/start-app.sh"
 else
