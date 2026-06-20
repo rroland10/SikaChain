@@ -20,6 +20,9 @@ fi
 
 if curl -sf "${RPC_URL}/v1/chain/get_info" >/dev/null 2>&1; then
   echo "✓ Chain already online at ${RPC_URL}"
+  if [[ -f "${ROOT}/scripts/sync-chain-config.mjs" ]]; then
+    node "${ROOT}/scripts/sync-chain-config.mjs" 2>/dev/null || true
+  fi
 else
   echo "→ Starting SikaChainDev (keosd + nodeos)..."
   "${SPRING_SCRIPTS}/start-all.sh"
@@ -50,3 +53,12 @@ fi
 echo ""
 echo "  Full bootstrap: ${SPRING_SCRIPTS}/bootstrap-dev.sh"
 echo "  Ecosystem:      ${SPRING_SCRIPTS}/ecosystem-status.sh"
+echo "  Verify stack:   npm run verify:stack"
+echo ""
+
+SITE_URL="http://127.0.0.1:${SITE_PORT}"
+APP_URL="http://127.0.0.1:${APP_PORT}"
+if curl -sf "${SITE_URL}/" >/dev/null 2>&1 && curl -sf "${APP_URL}/" >/dev/null 2>&1; then
+  echo "=== Stack verification ==="
+  npm run verify:stack
+fi

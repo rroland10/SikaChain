@@ -26,6 +26,8 @@ npm run dev
 
 Open [http://localhost:3004](http://localhost:3004).
 
+If the dev server returns 500 after a production build, run `npm run dev:clean` to clear a stale `.next` cache.
+
 Sync chain constants from Spring: `npm run sync:chain` (reads `../AntelopeOS/spring/sikachaindev/chain.json`).
 
 Start local chain + print dev URLs: `npm run dev:stack`
