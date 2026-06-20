@@ -1,101 +1,198 @@
-import Image from "next/image";
+import Link from "next/link";
+import { HeroCinematic } from "@/components/ui/HeroCinematic";
+import { LuxuryImageFrame } from "@/components/ui/LuxuryImageFrame";
+import { MetricsTicker } from "@/components/ui/MetricsTicker";
+import { NetworkStatus } from "@/components/ui/NetworkStatus";
+import { ProducerCompositionChart } from "@/components/ui/ProducerCompositionChart";
+import {
+  AnimatedCard,
+  CardGrid,
+  SectionBlock,
+  StatCard,
+  StatGrid,
+} from "@/components/PageSections";
+import { FadeIn, FadeInStagger } from "@/components/motion/FadeIn";
+import {
+  launchSequence,
+  positioning,
+  producerComposition,
+  timeline,
+} from "@/lib/content";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <HeroCinematic
+        eyebrow="Ghana first · Africa next"
+        title={
+          <>
+            Settlement for{" "}
+            <span className="text-sika-green-bright">mobile money</span>
+          </>
+        }
+        subtitle={positioning.sikaChain}
+        description="SikaChain is financial infrastructure — not a consumer crypto product. Sika App is how people send, pay, and cash out. Twenty-one genesis node producers are the institutional trust layer."
+        primaryCta={{ href: "/genesis", label: "Genesis Producer Program" }}
+        secondaryCta={{ href: "/ghana", label: "Ghana launch strategy" }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <MetricsTicker />
+
+      <SectionBlock
+        tag="Positioning"
+        title="Infrastructure users can trust. Products users can understand."
+        lead="Do not lead with blockchain for consumers. Lead with money movement. Use SikaChain to win institutional credibility."
+      >
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
+          <FadeInStagger className="space-y-5">
+            <AnimatedCard>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-gold">SikaChain</p>
+              <h3 className="mt-3 font-display text-xl font-bold">The network</h3>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{positioning.thesis}</p>
+            </AnimatedCard>
+            <AnimatedCard className="border-sika-green/25 glow-green">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-green-bright">Sika App</p>
+              <h3 className="mt-3 font-display text-xl font-bold">The product</h3>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">{positioning.sikaApp}</p>
+              <Link href="/sika-app" className="mt-5 inline-flex text-sm font-semibold text-sika-gold hover:underline">
+                Learn about Sika App →
+              </Link>
+            </AnimatedCard>
+            <AnimatedCard>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sika-gold">Genesis producers</p>
+              <h3 className="mt-3 font-display text-xl font-bold">The trust layer</h3>
+              <p className="mt-3 text-sm leading-relaxed text-sika-cream/72">
+                Fintechs, banks, telecoms, universities, and community institutions securing the network from day one.
+              </p>
+              <Link href="/producers" className="mt-5 inline-flex text-sm font-semibold text-sika-gold hover:underline">
+                Producer requirements →
+              </Link>
+            </AnimatedCard>
+          </FadeInStagger>
+
+          <LuxuryImageFrame
+            src="/images/genesis-producers.png"
+            alt="Institutional partners collaborating on SikaChain"
+            caption="Genesis producers bring infrastructure, finance, and community credibility — not speculation."
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </SectionBlock>
+
+      <SectionBlock
+        tag="Dev network"
+        title="SikaChainDev — local settlement layer"
+        lead="The marketing site connects to your local Spring node when running. Start nodeos via sikachaindev in the Spring repo."
+        className="border-t border-white/10"
+      >
+        <NetworkStatus />
+      </SectionBlock>
+
+      <SectionBlock
+        tag="Genesis program"
+        title="Recruiting 21 founding node producers"
+        lead="Target 40–60 serious candidates. Build a coalition of infrastructure, financial, merchant, and community partners."
+        className="border-t border-white/10 bg-black/20"
+      >
+        <FadeIn>
+          <ProducerCompositionChart />
+        </FadeIn>
+        <div className="mt-10">
+          <CardGrid>
+            {producerComposition.map((row) => (
+              <AnimatedCard key={row.category}>
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-display text-base font-bold leading-snug">{row.category}</h3>
+                  <span className="shrink-0 rounded-full bg-sika-gold/15 px-3 py-1 text-sm font-bold text-sika-gold">
+                    {row.count}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-sika-cream/65">{row.purpose}</p>
+              </AnimatedCard>
+            ))}
+          </CardGrid>
+        </div>
+        <FadeIn className="mt-12 text-center">
+          <Link href="/apply" className="btn-primary btn-shine">
+            Apply to the Genesis Producer Program
+          </Link>
+          <p className="mt-4">
+            <Link href="/candidates" className="text-sm font-semibold text-sika-gold hover:underline">
+              View qualified candidate showcase →
+            </Link>
+          </p>
+        </FadeIn>
+      </SectionBlock>
+
+      <SectionBlock
+        tag="Launch sequence"
+        title="From announcement to Ghana pilot"
+        lead="A disciplined sequence that proves credibility before consumer scale."
+      >
+        <CardGrid cols={2}>
+          {launchSequence.slice(0, 6).map((item) => (
+            <AnimatedCard key={item.step} className="flex gap-5">
+              <span className="font-display text-3xl font-extrabold text-sika-gold/35">
+                {String(item.step).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-lg font-bold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-sika-cream/65">{item.message}</p>
+              </div>
+            </AnimatedCard>
+          ))}
+        </CardGrid>
+        <FadeIn className="mt-10 text-center">
+          <Link href="/roadmap" className="text-sm font-semibold text-sika-gold hover:underline">
+            View full 12-month roadmap →
+          </Link>
+        </FadeIn>
+      </SectionBlock>
+
+      <SectionBlock
+        tag="Timeline"
+        title="12-month go-to-market"
+        lead="Foundation through Ghana public pilot."
+        className="border-t border-white/10 bg-black/20"
+      >
+        <div className="space-y-5">
+          {timeline.map((phase) => (
+            <FadeIn key={phase.period}>
+              <div className="card md:flex md:gap-10">
+                <div className="md:w-44 md:shrink-0">
+                  <p className="text-sm font-semibold text-sika-gold">{phase.period}</p>
+                  <p className="font-display text-lg font-bold">{phase.title}</p>
+                </div>
+                <ul className="mt-4 space-y-2.5 md:mt-0">
+                  {phase.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-relaxed text-sika-cream/72">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sika-green-bright" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </SectionBlock>
+
+      <section className="relative overflow-hidden border-t border-white/10 px-6 py-24">
+        <div className="absolute inset-0 bg-gradient-to-b from-sika-gold/[0.04] to-transparent" />
+        <div className="relative mx-auto max-w-6xl text-center">
+          <FadeIn>
+            <p className="section-tag mb-5">The winning formula</p>
+            <blockquote className="mx-auto max-w-3xl font-serif text-2xl italic leading-relaxed text-sika-gold-bright md:text-[2rem] md:leading-snug">
+              Credible 21 node producers + regulated-friendly mobile money + agent network +
+              merchant density + stable-value balances + invisible blockchain infrastructure.
+            </blockquote>
+          </FadeIn>
+          <StatGrid>
+            <StatCard value="21" label="Genesis producers" detail="Institutional trust layer" />
+            <StatCard value="GH" label="First launch market" detail="Then export across Africa" />
+            <StatCard value="∞" label="Repeat transactions" detail="The metric that matters" />
+          </StatGrid>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,0 +1,15 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SikaChain favicon">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0" stop-color="#0A7A48"/><stop offset="1" stop-color="#00482A"/></linearGradient>
+    <linearGradient id="gold" x1="0.15" y1="0" x2="0.8" y2="1"><stop offset="0" stop-color="#FFDE7A"/><stop offset="0.5" stop-color="#F2B705"/><stop offset="1" stop-color="#C99503"/></linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#bg)"/>
+  <!-- bolder cowrie, only 4 ridges so it survives 16px -->
+  <path d="M32 9 C43 9 50 18 51 27 C52 38 47 55 32 55 C17 55 12 38 13 27 C14 18 21 9 32 9 Z" fill="url(#gold)"/>
+  <path d="M32 17 Q38 26 38 32 Q38 38 32 47 Q26 38 26 32 Q26 26 32 17 Z" fill="#013F26"/>
+  <g fill="#FFE08A">
+    <rect x="26.5" y="22.5" width="11" height="3.6" rx="1.8"/>
+    <rect x="25.5" y="30.2" width="13" height="3.6" rx="1.8"/>
+    <rect x="26.5" y="37.9" width="11" height="3.6" rx="1.8"/>
+  </g>
+</svg>

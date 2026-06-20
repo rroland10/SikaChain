@@ -2,26 +2,141 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    @apply bg-sika-ink text-sika-cream font-body antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    @apply bg-sika-gold/30 text-sika-cream;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .section-tag {
+    @apply text-[11px] font-semibold uppercase tracking-[0.36em] text-sika-gold;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-bold tracking-tight text-sika-cream md:text-[2.75rem] md:leading-[1.08];
+  }
+
+  .section-lead {
+    @apply max-w-2xl text-base leading-[1.8] text-sika-cream/70 md:text-lg;
+  }
+
+  /* Glassmorphism system */
+  .glass-panel {
+    @apply rounded-[1.35rem] border border-white/10 bg-white/[0.045] shadow-glass backdrop-blur-xl;
+  }
+
+  .glass-inset {
+    @apply rounded-2xl border border-white/[0.06] bg-black/20 backdrop-blur-md;
+  }
+
+  .glass-chip {
+    @apply border border-white/10 bg-white/[0.06] backdrop-blur-md;
+  }
+
+  .glass-input {
+    @apply border border-white/10 bg-black/25 text-sika-cream placeholder:text-sika-cream/35 backdrop-blur-sm focus:border-sika-gold/40 focus:outline-none focus:ring-1 focus:ring-sika-gold/25;
+  }
+
+  .glass-button {
+    @apply border-white/15 bg-white/[0.04] backdrop-blur-md hover:border-sika-gold/35 hover:bg-white/[0.08];
+  }
+
+  .card {
+    @apply glass-panel relative overflow-hidden p-6 transition duration-500 md:p-8;
+  }
+
+  .card::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-[1.35rem] opacity-0 transition duration-500;
+    background: linear-gradient(135deg, rgba(242, 183, 5, 0.08), transparent 45%, rgba(31, 165, 107, 0.06));
+  }
+
+  .card:hover::before {
+    @apply opacity-100;
+  }
+
+  .card:hover {
+    @apply border-white/15 shadow-glass-lg -translate-y-0.5;
+  }
+
+  .glow-gold {
+    box-shadow:
+      0 0 0 1px rgba(242, 183, 5, 0.08),
+      0 20px 60px -20px rgba(242, 183, 5, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glow-green {
+    box-shadow:
+      0 0 0 1px rgba(31, 165, 107, 0.1),
+      0 24px 70px -24px rgba(0, 107, 63, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-sika-gold to-sika-gold-deep px-7 py-3.5 text-sm font-semibold text-sika-ink shadow-gold transition duration-300 hover:brightness-110;
+  }
+
+  .btn-shine::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition duration-700;
+  }
+
+  .btn-shine:hover::after {
+    @apply translate-x-full;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-sika-cream transition duration-300;
+  }
+
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    mix-blend-mode: soft-light;
+  }
+
+  .luxury-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-sika-gold/30 to-transparent;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-sika-gold-bright via-sika-gold to-sika-gold-deep bg-clip-text text-transparent;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-gradient-to-r from-white/[0.04] via-white/[0.08] to-white/[0.04];
+  }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .animate-pulse-soft {
+    animation: pulse-soft 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover {
+      transform: none;
+    }
   }
 }

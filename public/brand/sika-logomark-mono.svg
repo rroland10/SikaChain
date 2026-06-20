@@ -1,0 +1,10 @@
+<svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SikaChain mark, single colour">
+  <path d="M50 6 C68 6 79 22 80.5 41 C81.8 57 76 79 62 89 C57 92.5 43 92.5 38 89 C24 79 18.2 57 19.5 41 C21 22 32 6 50 6 Z" fill="#0F0F12"/>
+  <path d="M50 19 Q58.5 34 58.5 51 Q58.5 67 50 81 Q41.5 67 41.5 51 Q41.5 34 50 19 Z" fill="#FAF6EC"/>
+  <g fill="#0F0F12">
+    <rect x="45.4" y="22.6" width="9.2" height="4.5" rx="2.25"/><rect x="43.3" y="30.3" width="13.4" height="4.5" rx="2.25"/>
+    <rect x="42.1" y="38.0" width="15.8" height="4.5" rx="2.25"/><rect x="41.6" y="45.7" width="16.8" height="4.5" rx="2.25"/>
+    <rect x="41.9" y="53.4" width="16.2" height="4.5" rx="2.25"/><rect x="43.0" y="61.1" width="14.0" height="4.5" rx="2.25"/>
+    <rect x="44.8" y="68.8" width="10.4" height="4.5" rx="2.25"/>
+  </g>
+</svg>

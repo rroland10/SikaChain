@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SikaChain Web
 
-## Getting Started
+Marketing and go-to-market site for **SikaChain** — the blockchain settlement network for mobile money, merchant payments, remittances, and low-cost digital transfers.
 
-First, run the development server:
+This is the **infrastructure** site. The consumer mobile money product is [**Sika App**](../Sika%20app/) (separate repo).
+
+## Positioning
+
+| Layer | Role |
+| --- | --- |
+| **SikaChain** | Financial infrastructure — settlement network |
+| **Sika App** | User product — mobile money |
+| **21 genesis producers** | Institutional trust layer |
+
+**Launch market:** Ghana first, then expansion across Africa.
+
+## Run locally
 
 ```bash
+npm install
+cp .env.example .env   # set ADMIN_TOKEN at minimum
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3004](http://localhost:3004).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Luxury glassmorphic UI** with Framer Motion animations
+- **AI concierge** (✦ button) — local knowledge base; optional OpenAI via `OPENAI_API_KEY`
+- **Producer applications** — live form at `/apply`; local `data/` in dev, **Vercel Blob** in production
+- **Admin dashboard** — `/admin` (requires `ADMIN_TOKEN` in `.env`)
+- **Candidate showcase** — `/candidates` public transparency page
+- **Email notifications** — Resend: admin alert + applicant confirmation on apply; status emails on review
+- **Network status** — live SikaChainDev RPC widget on home page
 
-## Learn More
+## API routes
 
-To learn more about Next.js, take a look at the following resources:
+| Route | Purpose |
+| --- | --- |
+| `POST /api/chat` | AI concierge (local RAG or OpenAI) |
+| `POST /api/apply` | Genesis producer applications |
+| `GET /api/candidates` | Public showcase list (seed + promoted) |
+| `PATCH /api/admin/applications` | Update application review status |
+| `POST /api/admin/promote` | Promote application to public showcase |
+| `GET /api/admin/applications/export` | CSV export (Bearer token) |
+| `GET /api/chain` | Chain info, paginated blocks, block/tx lookup |
+| `GET /api/health` | Service health, storage backend, chain status |
+| `GET /api/producers/performance` | Testnet producer metrics |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+See `.env.example`:
 
-## Deploy on Vercel
+| Variable | Purpose |
+| --- | --- |
+| `ADMIN_TOKEN` | Protects `/admin` application review |
+| `RESEND_API_KEY` + `NOTIFY_EMAIL` | Email on new applications |
+| `OPENAI_API_KEY` | Optional LLM for concierge |
+| `SIKACHAIN_RPC_URL` | Dev chain RPC (default `http://127.0.0.1:8888`) |
+| `BLOB_READ_WRITE_TOKEN` | Vercel Blob for production application/showcase storage |
+| `NEXT_PUBLIC_SITE_URL` | Sitemap / Open Graph in production |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pages
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Route | Content |
+| --- | --- |
+| `/` | Home — hero, network status, genesis chart, timeline |
+| `/genesis` | Genesis Producer Program |
+| `/candidates` | Public candidate showcase (seed + promoted) |
+| `/testnet` | Live testnet producer performance dashboard |
+| `/producers` | Requirements and testnet qualification |
+| `/governance` | Governance model |
+| `/roadmap` | 12-month GTM timeline |
+| `/ghana` | Ghana-first launch strategy |
+| `/sika-app` | Sika App product overview |
+| `/apply` | Live producer application form |
+| `/admin` | Review, promote, export CSV |
+| `/explorer` | Block explorer with pagination and tx lookup |
+| `/explorer/block/[num]` | Block detail with action list |
+| `/press` | Press kit — brand assets and boilerplate |
+| `/status` | Platform health — storage, email, chain RPC |
+
+## Deploy (Vercel)
+
+```bash
+npm run deploy          # production (npx vercel --prod)
+npm run deploy:preview  # preview deployment
+```
+
+GitHub Actions runs `lint` + `build` on push to `main`.
+
+Set in the Vercel dashboard: `ADMIN_TOKEN`, `NEXT_PUBLIC_SITE_URL`, `BLOB_READ_WRITE_TOKEN` (create a Blob store in Storage), and a public `SIKACHAIN_RPC_URL` (not localhost). Optional: `RESEND_API_KEY`, `OPENAI_API_KEY`.
+
+Check deployment: `GET /api/health` returns `{ storage: "blob", ... }`.
+
+
+## Related projects
+
+- `../AntelopeOS/spring` — Spring node software + `sikachaindev/` local chain
+- `../Sika app` — Next.js + Capacitor mobile money app
+- `../SikaChain logo` — Brand identity assets

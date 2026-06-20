@@ -1,0 +1,43 @@
+<svg width="520" height="160" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SikaChain">
+  <defs>
+    <linearGradient id="gold" x1="0.15" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#FFDE7A"/><stop offset="0.38" stop-color="#F2B705"/>
+      <stop offset="0.78" stop-color="#D49A04"/><stop offset="1" stop-color="#B07F02"/>
+    </linearGradient>
+    <linearGradient id="goldBar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFEFC0"/><stop offset="0.55" stop-color="#FAC823"/><stop offset="1" stop-color="#E0A300"/>
+    </linearGradient>
+    <linearGradient id="slit" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#007A48"/><stop offset="1" stop-color="#00301C"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="0.36" cy="0.24" r="0.7">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/><stop offset="0.46" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.45"/><stop offset="0.45" stop-color="#FFFFFF" stop-opacity="0"/><stop offset="1" stop-color="#6E5200" stop-opacity="0.38"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Mark, scaled into a 0..130 box with 15 margin -->
+  <g transform="translate(15,15) scale(1.30)">
+    <path d="M50 6 C68 6 79 22 80.5 41 C81.8 57 76 79 62 89 C57 92.5 43 92.5 38 89 C24 79 18.2 57 19.5 41 C21 22 32 6 50 6 Z" fill="url(#gold)"/>
+    <path d="M50 6 C68 6 79 22 80.5 41 C81.8 57 76 79 62 89 C57 92.5 43 92.5 38 89 C24 79 18.2 57 19.5 41 C21 22 32 6 50 6 Z" fill="none" stroke="url(#rim)" stroke-width="1.5"/>
+    <path d="M50 19 Q58.5 34 58.5 51 Q58.5 67 50 81 Q41.5 67 41.5 51 Q41.5 34 50 19 Z" fill="url(#slit)"/>
+    <g fill="url(#goldBar)">
+      <rect x="45.4" y="22.6" width="9.2"  height="4.5" rx="2.25"/>
+      <rect x="43.3" y="30.3" width="13.4" height="4.5" rx="2.25"/>
+      <rect x="42.1" y="38.0" width="15.8" height="4.5" rx="2.25"/>
+      <rect x="41.6" y="45.7" width="16.8" height="4.5" rx="2.25"/>
+      <rect x="41.9" y="53.4" width="16.2" height="4.5" rx="2.25"/>
+      <rect x="43.0" y="61.1" width="14.0" height="4.5" rx="2.25"/>
+      <rect x="44.8" y="68.8" width="10.4" height="4.5" rx="2.25"/>
+    </g>
+    <path d="M50 6 C68 6 79 22 80.5 41 C81.8 57 76 79 62 89 C57 92.5 43 92.5 38 89 C24 79 18.2 57 19.5 41 C21 22 32 6 50 6 Z" fill="url(#sheen)"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="186" y="92" font-family="'Bricolage Grotesque','Arial Black','Helvetica Neue',sans-serif" font-weight="800" font-size="58" letter-spacing="-1.5">
+    <tspan fill="#0F0F12">Sika</tspan><tspan fill="#006B3F">Chain</tspan>
+  </text>
+  <text x="188" y="118" font-family="'Manrope','Helvetica Neue',sans-serif" font-weight="600" font-size="15.5" letter-spacing="6.5" fill="#C99503">GOLD · ON · CHAIN</text>
+</svg>
