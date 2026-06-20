@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/announce",
     "/press",
     "/status",
+    "/developers",
     "/producers",
     "/governance",
     "/roadmap",

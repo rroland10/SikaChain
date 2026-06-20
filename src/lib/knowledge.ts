@@ -113,6 +113,13 @@ export const knowledgeChunks: KnowledgeChunk[] = [
     link: "/status",
   },
   {
+    id: "developers",
+    topic: "Developer quickstart",
+    text: "Build on SikaChainDev at /developers — chain ID, RPC, WharfKit SessionKit snippet, cleos commands, and local Spring node setup synced from sikachaindev/chain.json.",
+    keywords: ["developer", "rpc", "wharfkit", "cleos", "sdk", "build", "integrate", "chain id"],
+    link: "/developers",
+  },
+  {
     id: "explorer",
     topic: "Block explorer",
     text: "Browse live SikaChainDev blocks at /explorer — paginated block list, block search, transaction lookup, and Savanna finality status. Block detail pages at /explorer/block/[number] show actions and authorizations when the local node is running.",

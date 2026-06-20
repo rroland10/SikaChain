@@ -30,6 +30,7 @@ export const docsSections = [
   {
     title: "Developer",
     items: [
+      { label: "Developer quickstart", href: "/developers", description: "RPC, chain ID, WharfKit, cleos" },
       { label: "SikaChainDev RPC", href: "/explorer", description: "http://127.0.0.1:8888" },
       { label: "Spring node software", href: "https://github.com/AntelopeIO/spring", description: "AntelopeOS Spring", external: true },
       { label: "Local dev scripts", href: "https://github.com/AntelopeIO/spring/tree/main/sikachaindev", description: "sikachaindev/", external: true },
@@ -74,6 +75,7 @@ export const secondaryNavLinks = [
   { href: "/governance", label: "Governance" },
   { href: "/roadmap", label: "Roadmap" },
   { href: "/sika-app", label: "Sika App" },
+  { href: "/developers", label: "Developers" },
   { href: "/explorer", label: "Explorer" },
   { href: "/announce", label: "Announce" },
   { href: "/press", label: "Press" },

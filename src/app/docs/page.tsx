@@ -44,6 +44,11 @@ export default function DocsPage() {
               <p className="text-[10px] uppercase tracking-wider text-sika-gold">Chain ID</p>
               <p className="break-all font-mono text-xs text-sika-cream/70">{chainConfig.chainId}</p>
             </div>
+            <div className="md:col-span-2">
+              <Link href="/developers" className="text-sm text-sika-gold hover:underline">
+                Full developer quickstart →
+              </Link>
+            </div>
           </div>
         </FadeIn>
       </SectionBlock>

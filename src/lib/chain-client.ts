@@ -1,12 +1,16 @@
+import { sikaChainDev } from "@/lib/chain-constants";
+
 export const chainConfig = {
-  name: "SikaChainDev",
-  chainId: "9b2fde923758593c09517f77ed445a3962a9c938f44405dac43b4ccfebbfa57e",
-  rpcUrl: process.env.SIKACHAIN_RPC_URL || "http://127.0.0.1:8888",
-  symbol: "SIKA",
-  tokenContract: "sika.token",
-  systemContract: "eosio",
-  producer: "eosio",
-  launchMarket: "Ghana",
+  name: sikaChainDev.chainName,
+  chainId: sikaChainDev.chainId,
+  rpcUrl: process.env.SIKACHAIN_RPC_URL || sikaChainDev.rpcUrl,
+  walletUrl: sikaChainDev.walletUrl,
+  symbol: sikaChainDev.symbol,
+  tokenContract: sikaChainDev.tokenContract,
+  rexContract: sikaChainDev.rexContract,
+  systemContract: sikaChainDev.systemContract,
+  producer: sikaChainDev.producer,
+  launchMarket: sikaChainDev.launchMarket,
 } as const;
 
 export type ChainInfo = {

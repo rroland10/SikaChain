@@ -26,6 +26,8 @@ npm run dev
 
 Open [http://localhost:3004](http://localhost:3004).
 
+Sync chain constants from Spring: `npm run sync:chain` (reads `../AntelopeOS/spring/sikachaindev/chain.json`).
+
 ## Features
 
 - **Luxury glassmorphic UI** with Framer Motion animations
@@ -82,6 +84,7 @@ See `.env.example`:
 | `/explorer/block/[num]` | Block detail with action list |
 | `/press` | Press kit — brand assets and boilerplate |
 | `/status` | Platform health — storage, email, chain RPC |
+| `/developers` | Dev quickstart — RPC, chain ID, WharfKit, cleos |
 
 ## Deploy (Vercel)
 

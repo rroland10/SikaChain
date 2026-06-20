@@ -8,7 +8,8 @@
     "start": "next start -p 3004",
     "lint": "next lint",
     "deploy": "npx vercel --prod",
-    "deploy:preview": "npx vercel"
+    "deploy:preview": "npx vercel",
+    "sync:chain": "node scripts/sync-chain-config.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.4.1",

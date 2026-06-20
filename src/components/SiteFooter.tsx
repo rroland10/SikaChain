@@ -77,7 +77,15 @@ export function SiteFooter() {
         </FadeIn>
       </div>
       <div className="border-t border-white/10 px-6 py-6 text-center text-xs tracking-wide text-sika-cream/42">
-        © {new Date().getFullYear()} SikaChain · Built for real-world money movement
+        © {new Date().getFullYear()} SikaChain ·{" "}
+        <a
+          href="https://github.com/rroland10/SikaChain"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-sika-gold"
+        >
+          GitHub
+        </a>
       </div>
     </footer>
   );
