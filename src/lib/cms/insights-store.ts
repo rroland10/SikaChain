@@ -1,5 +1,7 @@
 import type { CreateInsightInput, InsightPost, PostStatus, UpdateInsightInput } from "@/lib/cms/types";
 import { slugify } from "@/lib/cms/slug";
+import type { Locale } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
 import {
   deleteJsonObject,
   INSIGHTS_PREFIX,
@@ -12,16 +14,17 @@ function insightPath(id: string): string {
   return `${INSIGHTS_PREFIX}${id}.json`;
 }
 
-export async function listAllInsights(): Promise<InsightPost[]> {
+export async function listAllInsights(locale?: Locale): Promise<InsightPost[]> {
   const ids = await listJsonIds(INSIGHTS_PREFIX);
   const posts = await Promise.all(ids.map((id) => readJsonObject<InsightPost>(insightPath(id))));
   return posts
     .filter((post): post is InsightPost => post !== null)
+    .filter((post) => !locale || post.locale === locale || (!post.locale && locale === routing.defaultLocale))
     .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
 }
 
-export async function listPublishedInsights(): Promise<InsightPost[]> {
-  return (await listAllInsights())
+export async function listPublishedInsights(locale: Locale): Promise<InsightPost[]> {
+  return (await listAllInsights(locale))
     .filter((post) => post.status === "published")
     .sort((a, b) => {
       const aTime = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
@@ -34,19 +37,19 @@ export async function getInsightById(id: string): Promise<InsightPost | null> {
   return readJsonObject<InsightPost>(insightPath(id));
 }
 
-export async function getInsightBySlug(slug: string): Promise<InsightPost | null> {
-  const posts = await listAllInsights();
+export async function getInsightBySlug(slug: string, locale: Locale): Promise<InsightPost | null> {
+  const posts = await listAllInsights(locale);
   return posts.find((post) => post.slug === slug) ?? null;
 }
 
-export async function getPublishedInsightBySlug(slug: string): Promise<InsightPost | null> {
-  const post = await getInsightBySlug(slug);
+export async function getPublishedInsightBySlug(slug: string, locale: Locale): Promise<InsightPost | null> {
+  const post = await getInsightBySlug(slug, locale);
   if (!post || post.status !== "published") return null;
   return post;
 }
 
-async function ensureUniqueSlug(baseSlug: string, excludeId?: string): Promise<string> {
-  const posts = await listAllInsights();
+async function ensureUniqueSlug(baseSlug: string, locale: Locale, excludeId?: string): Promise<string> {
+  const posts = await listAllInsights(locale);
   let slug = baseSlug || "untitled";
   let counter = 1;
 
@@ -63,8 +66,9 @@ export function createInsightId(slug: string): string {
 }
 
 export async function createInsight(input: CreateInsightInput): Promise<InsightPost> {
+  const locale = input.locale ?? routing.defaultLocale;
   const baseSlug = slugify(input.slug || input.title || "untitled");
-  const slug = await ensureUniqueSlug(baseSlug);
+  const slug = await ensureUniqueSlug(baseSlug, locale);
   const id = createInsightId(slug);
   const now = new Date().toISOString();
   const status: PostStatus = input.status ?? "draft";
@@ -72,6 +76,7 @@ export async function createInsight(input: CreateInsightInput): Promise<InsightP
   const post: InsightPost = {
     id,
     slug,
+    locale,
     title: input.title.trim() || "Untitled",
     excerpt: input.excerpt?.trim() || "",
     body: input.body?.trim() || "",
@@ -92,12 +97,13 @@ export async function updateInsight(id: string, patch: UpdateInsightInput): Prom
   const existing = await getInsightById(id);
   if (!existing) return null;
 
+  const locale = patch.locale ?? existing.locale ?? routing.defaultLocale;
   const now = new Date().toISOString();
   let slug = existing.slug;
 
   if (patch.slug !== undefined || patch.title !== undefined) {
     const baseSlug = slugify(patch.slug || patch.title || existing.title);
-    slug = await ensureUniqueSlug(baseSlug, id);
+    slug = await ensureUniqueSlug(baseSlug, locale, id);
   }
 
   const nextStatus = patch.status ?? existing.status;
@@ -116,6 +122,7 @@ export async function updateInsight(id: string, patch: UpdateInsightInput): Prom
   const updated: InsightPost = {
     ...existing,
     ...patch,
+    locale,
     slug,
     title: patch.title?.trim() ?? existing.title,
     excerpt: patch.excerpt !== undefined ? patch.excerpt.trim() : existing.excerpt,

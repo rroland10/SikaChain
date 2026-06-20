@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AdminField, AdminTextarea, AdminTextInput, ContentStatusBadge } from "@/components/admin/AdminFields";
+import { AdminLocalePicker } from "@/components/admin/AdminLocalePicker";
 import type { InsightPost } from "@/lib/cms/types";
+import { localeLabels, routing, type Locale } from "@/i18n/routing";
 
 type InsightsPanelProps = {
   authHeaders: () => HeadersInit;
@@ -14,6 +16,7 @@ type InsightsPanelProps = {
 const emptyDraft = (): Partial<InsightPost> => ({
   title: "",
   slug: "",
+  locale: routing.defaultLocale,
   excerpt: "",
   body: "",
   author: "SikaChain",
@@ -23,6 +26,7 @@ const emptyDraft = (): Partial<InsightPost> => ({
 });
 
 export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanelProps) {
+  const [locale, setLocale] = useState<Locale>(routing.defaultLocale);
   const [posts, setPosts] = useState<InsightPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -33,7 +37,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
     setLoading(true);
     onError("");
     try {
-      const res = await fetch("/api/admin/insights", { headers: authHeaders() });
+      const res = await fetch(`/api/admin/insights?locale=${locale}`, { headers: authHeaders() });
       if (!res.ok) throw new Error("Failed to load insights");
       const data = (await res.json()) as { posts: InsightPost[] };
       setPosts(data.posts);
@@ -42,7 +46,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
     } finally {
       setLoading(false);
     }
-  }, [authHeaders, onError]);
+  }, [authHeaders, onError, locale]);
 
   useEffect(() => {
     loadPosts();
@@ -51,7 +55,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
   function startCreate() {
     setCreating(true);
     setSelectedId(null);
-    setForm(emptyDraft());
+    setForm({ ...emptyDraft(), locale });
   }
 
   function selectPost(post: InsightPost) {
@@ -75,6 +79,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
 
     const payload = {
       title: form.title,
+      locale: form.locale ?? locale,
       slug: form.slug,
       excerpt: form.excerpt,
       body: form.body,
@@ -125,6 +130,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
         headers: authHeaders(),
         body: JSON.stringify({
           title: form.title,
+          locale: form.locale ?? locale,
           slug: form.slug,
           excerpt: form.excerpt,
           body: form.body,
@@ -152,6 +158,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
       headers: authHeaders(),
       body: JSON.stringify({
         id: selectedId,
+        locale: form.locale ?? locale,
         title: form.title,
         slug: form.slug,
         excerpt: form.excerpt,
@@ -215,6 +222,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
       <div className="space-y-3">
+        <AdminLocalePicker locale={locale} onChange={setLocale} />
         <button type="button" onClick={startCreate} className="btn-primary btn-shine w-full text-sm">
           + New insight
         </button>
@@ -233,7 +241,7 @@ export function InsightsPanel({ authHeaders, onMessage, onError }: InsightsPanel
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="font-display text-lg font-bold">{post.title}</p>
-                <p className="mt-1 text-xs text-sika-cream/55">/{post.slug}</p>
+                <p className="mt-1 text-xs text-sika-cream/55">/{post.slug} · {localeLabels[post.locale ?? "en"]}</p>
               </div>
               <ContentStatusBadge status={post.status} />
             </div>

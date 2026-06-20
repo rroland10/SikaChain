@@ -24,7 +24,9 @@ cp .env.example .env   # set ADMIN_TOKEN at minimum
 npm run dev
 ```
 
-Open [http://localhost:3004](http://localhost:3004).
+Open [http://localhost:3004/en](http://localhost:3004/en) (English). Also available: `/ak` (Twi), `/fr` (French).
+
+Use the language switcher in the header or mobile menu to change locale.
 
 If the dev server returns 500 after a production build, run `npm run dev:clean` to clear a stale `.next` cache.
 

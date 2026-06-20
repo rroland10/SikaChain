@@ -1,0 +1,96 @@
+{
+  "common": {
+    "apply": "Fa Aplica",
+    "more": "Bebree ▾",
+    "tagline": "Mobile money nhyehyɛe",
+    "language": "Kasa",
+    "allInsights": "Nhwehwɛmu nyinaa",
+    "backToInsights": "← San kɔ nhwehwɛmu",
+    "viewLive": "Hwɛ wɔ wɛbsait so →",
+    "readAnnouncement": "Kenkan nkrabea a wɔde too gua →",
+    "noInsightsYet": "Nhwehwɛmu bɛda hɔ sɛ wɔde publish fi admin dashboard no so a.",
+    "translationNote": "Ebinom nkyerɛwee betumi da English mu kakra bi."
+  },
+  "nav": {
+    "genesis": "Genesis",
+    "candidates": "Asumfoɔ",
+    "testnet": "Testnet",
+    "ghana": "Ghana",
+    "docs": "Nwoma",
+    "producers": "Asomfoɔ",
+    "governance": "Ahennie",
+    "roadmap": "Akwantuo",
+    "sikaApp": "Sika App",
+    "developers": "Developers",
+    "explorer": "Explorer",
+    "announce": "Nkrabea",
+    "insights": "Nhwehwɛmu",
+    "press": "Media",
+    "status": "Tebea"
+  },
+  "footer": {
+    "network": "Network",
+    "resources": "Mfonini",
+    "stack": "Stack",
+    "description": "Blockchain nhyehyɛe a wɔde ayɛ mobile money, tɔntɔdwuma, sika a wɔde kɔ man foforo, ne sika a wɔde sesa a ɛyɛ hu.",
+    "launching": "Yebefi {market} so, na afei yɛɛ expand kɔ {expansion} so.",
+    "tagline": "Mobile money ho infrastructure. Ennyɛ crypto chain foforo.",
+    "stackSettlement": "SikaChain — nhyehyɛe",
+    "stackApp": "Sika App — mobile money",
+    "stackProducers": "Asomfoɔ 21 — gyidi layer",
+    "copyright": "© {year} SikaChain"
+  },
+  "metadata": {
+    "siteTitle": "SikaChain — Mobile Money Nhyehyɛe Network",
+    "siteDescription": "Blockchain nhyehyɛe a wɔde ayɛ mobile money, tɔntɔdwuma, sika a wɔde kɔ man foforo, ne sika a wɔde sesa a ɛyɛ hu."
+  },
+  "insights": {
+    "title": "Nhwehwɛmu",
+    "pageTitle": "Network nkrabea ne nhwehwɛmu",
+    "pageLead": "Nkrabea a wɔde too gua, Ghana strategy, producer program nkɔso, ne SikaChain adwene.",
+    "latest": "Nhwehwɛmu a wɔapublish",
+    "genesisCta": "Genesis program",
+    "announceCta": "Nkrabea a wɔde too gua"
+  },
+  "cms": {
+    "home": {
+      "eyebrow": "Ghana kan · Africa akyi",
+      "heroHighlight": "mobile money",
+      "subtitle": "Blockchain nhyehyɛe a wɔde ayɛ mobile money, tɔntɔdwuma, sika a wɔde kɔ man foforo, ne digital commerce.",
+      "description": "SikaChain yɛ financial infrastructure — ennyɛ consumer crypto product. Sika App na ɛma nnipa de sika kɔ, tua, na cash in/out. Asomfoɔ 21 na wɔyɛ institutional trust layer.",
+      "positioningTitle": "Infrastructure a wogye di. Products a nnipa te aseɛ.",
+      "positioningLead": "Mfa blockchain nni consumer ho kan. Fa sika movement di kan. Fa SikaChain nyɛ institutional gyidi.",
+      "sikaChainThesis": "SikaChain wɔ hɔ sɛ ɛbɛma sika movement a ɛyɛ hu, a wohu nea ɛkɔ so yie, mobile-first ama users, merchants, agents, ne financial partners.",
+      "sikaAppDescription": "Mobile money app a ɛma nnipa de sika kɔ, tua merchants, na cash in/out a ɛyɛ hu ne instant settlement.",
+      "producersDescription": "Fintechs, banks, telecoms, universities, ne community institutions a wɔbɔ ho ban network no fi da a edi kan."
+    },
+    "announce": {
+      "headline": "SikaChain — mobile money nhyehyɛe network",
+      "subheadline": "Wɔde ayɛ merchant payments, remittances, agent banking, ne sika a wɔde sesa a ɛyɛ hu. Ghana kan. Africa akyi.",
+      "body": "SikaChain yɛ blockchain settlement network foforo a wɔde ayɛ mobile money, merchant payments, remittances, ne sika a wɔde sesa a ɛyɛ hu. Network no bɛfi ase ne genesis node producers 21 a wɔbɔ wɔn afiri infrastructure operators, fintech partners, merchant networks, regional institutions, ne community organizations mu.\n\nNe flagship application a edi kan, Sika App, bɛma users de sika kɔ, tua merchants, na cash in/out through local agents — a nnipa nhu volatile crypto anaa seed phrases.\n\nSikaChain yɛ financial infrastructure. Sika App yɛ user product no. Genesis producers 21 na wɔyɛ institutional trust layer no.",
+      "consumerMessage": "De sika kɔ ntɛm. Tua merchants. Cash in ne cash out wɔ wo nkyɛn.",
+      "infrastructureMessage": "SikaChain na ɛma low-cost, transparent settlement.",
+      "quotes": [
+        {
+          "role": "Infrastructure positioning",
+          "text": "SikaChain wɔ hɔ sɛ ɛbɛma sika movement a ɛyɛ hu, a wohu nea ɛkɔ so yie, mobile-first."
+        },
+        {
+          "role": "Consumer positioning",
+          "text": "Sika App ma nnipa de sika kɔ, tua merchants, na cash in/out a ɛyɛ hu — ennyɛ crypto wallet foforo."
+        }
+      ],
+      "launchSteps": [
+        "Pae mu denam SikaChain mobile money settlement infrastructure so",
+        "Fi Genesis Producer Program ase — fa producers 21 a wogye di tom",
+        "Publish qualified candidates na run public testnet",
+        "Launch mainnet ne explorer, governance portal, ne producer dashboard",
+        "Bue Sika App private beta wɔ Ghana"
+      ]
+    },
+    "press": {
+      "boilerplate": "SikaChain yɛ blockchain settlement network a wɔde ayɛ mobile money, merchant payments, remittances, ne sika a wɔde sesa a ɛyɛ hu. Ne flagship application Sika App ma users de sika kɔ, tua merchants, na cash in/out — a nnipa nhu volatile crypto. SikaChain yɛ financial infrastructure. Sika App yɛ user product. Genesis node producers 21 na wɔyɛ institutional trust layer. Launch market: Ghana kan.",
+      "mediaContact": "Ma press, partnership, anaa genesis producer inquiries, fa producer application form no di anaa official channels so."
+    }
+  }
+}

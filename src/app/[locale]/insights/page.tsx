@@ -1,34 +1,48 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { FadeIn, FadeInStagger } from "@/components/motion/FadeIn";
 import { PageHero, SectionBlock } from "@/components/PageSections";
 import { listPublishedInsights } from "@/lib/cms/insights-store";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Insights",
-  description: "News, analysis, and updates from the SikaChain settlement network.",
+type PageProps = {
+  params: Promise<{ locale: Locale }>;
 };
 
-export default async function InsightsPage() {
-  const posts = await listPublishedInsights();
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "insights" });
+  return {
+    title: t("title"),
+    description: t("pageLead"),
+  };
+}
+
+export default async function InsightsPage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "insights" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
+  const posts = await listPublishedInsights(locale);
 
   return (
     <>
       <PageHero
-        eyebrow="Insights"
-        title="Network news & analysis"
-        lead="Launch updates, Ghana market strategy, producer program progress, and infrastructure perspectives from the SikaChain team."
-        primaryCta={{ href: "/genesis", label: "Genesis program" }}
-        secondaryCta={{ href: "/announce", label: "Launch announcement" }}
+        eyebrow={t("title")}
+        title={t("pageTitle")}
+        lead={t("pageLead")}
+        primaryCta={{ href: "/genesis", label: t("genesisCta") }}
+        secondaryCta={{ href: "/announce", label: t("announceCta") }}
       />
 
-      <SectionBlock tag="Latest" title="Published insights" className="pb-24">
+      <SectionBlock tag="Latest" title={t("latest")} className="pb-24">
         {posts.length === 0 ? (
           <FadeIn>
             <div className="glass-panel p-8 text-center">
-              <p className="text-sika-cream/65">Insights will appear here once published from the admin dashboard.</p>
+              <p className="text-sika-cream/65">{tCommon("noInsightsYet")}</p>
               <Link href="/announce" className="mt-6 inline-flex text-sm font-semibold text-sika-gold hover:underline">
-                Read launch announcement →
+                {tCommon("readAnnouncement")}
               </Link>
             </div>
           </FadeIn>
@@ -56,7 +70,8 @@ export default async function InsightsPage() {
                 {post.excerpt && <p className="mt-3 text-sm leading-relaxed text-sika-cream/65">{post.excerpt}</p>}
                 <p className="mt-4 text-xs text-sika-cream/45">
                   {post.author || "SikaChain"}
-                  {post.publishedAt && ` · ${new Date(post.publishedAt).toLocaleDateString("en-GB", { dateStyle: "medium" })}`}
+                  {post.publishedAt &&
+                    ` · ${new Date(post.publishedAt).toLocaleDateString(locale === "fr" ? "fr-FR" : locale === "ak" ? "en-GH" : "en-GB", { dateStyle: "medium" })}`}
                 </p>
               </Link>
             ))}

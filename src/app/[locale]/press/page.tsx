@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { PageHero, SectionBlock } from "@/components/PageSections";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { readSiteContent } from "@/lib/cms/site-content-store";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Press Kit",
-  description: "SikaChain brand assets, positioning, and launch messaging for media and partners.",
+type PageProps = {
+  params: Promise<{ locale: Locale }>;
 };
 
 const brandAssets = [
@@ -20,8 +21,19 @@ const brandAssets = [
   { href: "/brand/sika-favicon.svg", label: "Favicon", type: "SVG" },
 ] as const;
 
-export default async function PressPage() {
-  const { press, announce } = await readSiteContent();
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "nav" });
+  return {
+    title: t("press"),
+    description: "SikaChain brand assets, positioning, and launch messaging for media and partners.",
+  };
+}
+
+export default async function PressPage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const { press, announce } = await readSiteContent(locale);
 
   return (
     <>
@@ -75,10 +87,6 @@ export default async function PressPage() {
             </a>
           ))}
         </div>
-        <p className="mt-6 text-sm text-sika-cream/55">
-          Full brand guidelines and additional formats: local repo{" "}
-          <code className="text-sika-gold">../SikaChain logo/</code>
-        </p>
       </SectionBlock>
 
       <SectionBlock tag="Contact" title="Media inquiries" className="border-t border-white/10 bg-black/20 pb-24">

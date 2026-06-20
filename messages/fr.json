@@ -1,0 +1,96 @@
+{
+  "common": {
+    "apply": "Postuler",
+    "more": "Plus ▾",
+    "tagline": "Règlement mobile money",
+    "language": "Langue",
+    "allInsights": "Tous les articles",
+    "backToInsights": "← Retour aux articles",
+    "viewLive": "Voir en ligne →",
+    "readAnnouncement": "Lire l'annonce de lancement →",
+    "noInsightsYet": "Les articles apparaîtront ici une fois publiés depuis le tableau de bord admin.",
+    "translationNote": "Certaines sections peuvent rester en anglais pendant la traduction."
+  },
+  "nav": {
+    "genesis": "Genèse",
+    "candidates": "Candidats",
+    "testnet": "Testnet",
+    "ghana": "Ghana",
+    "docs": "Docs",
+    "producers": "Producteurs",
+    "governance": "Gouvernance",
+    "roadmap": "Feuille de route",
+    "sikaApp": "Sika App",
+    "developers": "Développeurs",
+    "explorer": "Explorateur",
+    "announce": "Annonce",
+    "insights": "Analyses",
+    "press": "Presse",
+    "status": "Statut"
+  },
+  "footer": {
+    "network": "Réseau",
+    "resources": "Ressources",
+    "stack": "Stack",
+    "description": "Un réseau de règlement blockchain conçu pour le mobile money, les paiements marchands, les envois de fonds et les transferts numériques à faible coût.",
+    "launching": "Lancement d'abord au {market}, puis expansion en {expansion}.",
+    "tagline": "Infrastructure pour le mobile money. Pas une autre chaîne spéculative.",
+    "stackSettlement": "SikaChain — règlement",
+    "stackApp": "Sika App — mobile money",
+    "stackProducers": "21 producteurs — couche de confiance",
+    "copyright": "© {year} SikaChain"
+  },
+  "metadata": {
+    "siteTitle": "SikaChain — Réseau de règlement Mobile Money",
+    "siteDescription": "Un réseau de règlement blockchain conçu pour le mobile money, les paiements marchands, les envois de fonds et les transferts numériques à faible coût."
+  },
+  "insights": {
+    "title": "Analyses",
+    "pageTitle": "Actualités et analyses du réseau",
+    "pageLead": "Mises à jour de lancement, stratégie Ghana, avancement du programme producteurs et perspectives infrastructure de SikaChain.",
+    "latest": "Articles publiés",
+    "genesisCta": "Programme Genèse",
+    "announceCta": "Annonce de lancement"
+  },
+  "cms": {
+    "home": {
+      "eyebrow": "Ghana d'abord · Afrique ensuite",
+      "heroHighlight": "mobile money",
+      "subtitle": "Un réseau de règlement blockchain conçu pour le mobile money, les paiements marchands, les envois de fonds et le commerce numérique local.",
+      "description": "SikaChain est une infrastructure financière — pas un produit crypto grand public. Sika App permet d'envoyer, payer et retirer. Vingt-et-un producteurs genèse forment la couche de confiance institutionnelle.",
+      "positioningTitle": "Une infrastructure de confiance. Des produits compréhensibles.",
+      "positioningLead": "Ne commencez pas par la blockchain pour les consommateurs. Commencez par le mouvement d'argent. Utilisez SikaChain pour la crédibilité institutionnelle.",
+      "sikaChainThesis": "SikaChain existe pour permettre un mouvement d'argent transparent, mobile-first et à faible coût pour utilisateurs, marchands, agents et partenaires financiers.",
+      "sikaAppDescription": "Une application mobile money pour envoyer de l'argent, payer les marchands et accéder aux services cash-in/cash-out avec des frais bas et un règlement instantané.",
+      "producersDescription": "Fintechs, banques, télécoms, universités et institutions communautaires sécurisant le réseau dès le premier jour."
+    },
+    "announce": {
+      "headline": "SikaChain — un réseau de règlement pour le mobile money",
+      "subheadline": "Conçu pour les paiements marchands, les envois de fonds, l'agent banking et les transferts numériques à faible coût. Ghana d'abord. Afrique ensuite.",
+      "body": "SikaChain est un nouveau réseau de règlement blockchain conçu pour le mobile money, les paiements marchands, les envois de fonds et les transferts numériques à faible coût. Le réseau sera lancé avec 21 producteurs nœuds genèse sélectionnés parmi des opérateurs d'infrastructure, des partenaires fintech, des réseaux marchands, des institutions régionales et des organisations communautaires.\n\nSa première application phare, Sika App, permettra aux utilisateurs d'envoyer de l'argent, payer les marchands et accéder aux services cash-in/cash-out via des agents locaux — sans exposer les utilisateurs quotidiens aux crypto volatiles ou aux phrases secrètes.\n\nSikaChain est une infrastructure financière. Sika App est le produit utilisateur. Les 21 producteurs genèse sont la couche de confiance institutionnelle.",
+      "consumerMessage": "Envoyez de l'argent instantanément. Payez les marchands. Cash-in et cash-out à proximité.",
+      "infrastructureMessage": "Propulsé par SikaChain pour un règlement transparent et à faible coût.",
+      "quotes": [
+        {
+          "role": "Positionnement infrastructure",
+          "text": "SikaChain existe pour permettre un mouvement d'argent transparent, mobile-first et à faible coût."
+        },
+        {
+          "role": "Positionnement consommateur",
+          "text": "Sika App permet d'envoyer de l'argent, payer les marchands et accéder au cash-in/cash-out — pas un autre portefeuille crypto."
+        }
+      ],
+      "launchSteps": [
+        "Annoncer SikaChain comme infrastructure de règlement mobile money",
+        "Lancer le Programme Producteurs Genèse — recruter 21 producteurs crédibles",
+        "Publier les candidats qualifiés et exécuter le testnet public",
+        "Lancer le mainnet avec explorateur, portail de gouvernance et tableau de bord producteurs",
+        "Ouvrir la bêta privée Sika App au Ghana"
+      ]
+    },
+    "press": {
+      "boilerplate": "SikaChain est un réseau de règlement blockchain conçu pour le mobile money, les paiements marchands, les envois de fonds et les transferts numériques à faible coût. Sa première application phare, Sika App, permet d'envoyer de l'argent, payer les marchands et accéder au cash-in/cash-out — sans exposer les utilisateurs aux crypto volatiles. SikaChain est une infrastructure financière. Sika App est le produit utilisateur. Vingt-et-un producteurs genèse forment la couche de confiance institutionnelle. Marché de lancement : Ghana d'abord.",
+      "mediaContact": "Pour la presse, les partenariats ou les demandes producteurs genèse, utilisez le formulaire de candidature ou les canaux officiels une fois publiés."
+    }
+  }
+}

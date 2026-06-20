@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AdminField, AdminTextarea, AdminTextInput } from "@/components/admin/AdminFields";
+import { AdminLocalePicker } from "@/components/admin/AdminLocalePicker";
 import type {
   AnnounceContentEditable,
   HomeContentEditable,
@@ -9,6 +10,7 @@ import type {
   SiteContentDoc,
   SiteContentSection,
 } from "@/lib/cms/types";
+import { routing, type Locale } from "@/i18n/routing";
 
 type SiteContentPanelProps = {
   authHeaders: () => HeadersInit;
@@ -23,6 +25,7 @@ const SECTION_LABELS: Record<SiteContentSection, string> = {
 };
 
 export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteContentPanelProps) {
+  const [locale, setLocale] = useState<Locale>(routing.defaultLocale);
   const [section, setSection] = useState<SiteContentSection>("announce");
   const [content, setContent] = useState<SiteContentDoc | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,7 +35,7 @@ export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteConten
     setLoading(true);
     onError("");
     try {
-      const res = await fetch("/api/admin/content", { headers: authHeaders() });
+      const res = await fetch(`/api/admin/content?locale=${locale}`, { headers: authHeaders() });
       if (!res.ok) throw new Error("Failed");
       const data = (await res.json()) as { content: SiteContentDoc };
       setContent(data.content);
@@ -41,7 +44,7 @@ export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteConten
     } finally {
       setLoading(false);
     }
-  }, [authHeaders, onError]);
+  }, [authHeaders, onError, locale]);
 
   useEffect(() => {
     loadContent();
@@ -56,7 +59,7 @@ export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteConten
     const res = await fetch("/api/admin/content", {
       method: "PUT",
       headers: authHeaders(),
-      body: JSON.stringify({ section, data: content[section] }),
+      body: JSON.stringify({ section, locale, data: content[section] }),
     });
 
     const json = await res.json();
@@ -74,7 +77,7 @@ export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteConten
   async function resetSection() {
     if (!confirm(`Reset ${SECTION_LABELS[section]} to built-in defaults?`)) return;
 
-    const res = await fetch(`/api/admin/content?section=${section}`, {
+    const res = await fetch(`/api/admin/content?section=${section}&locale=${locale}`, {
       method: "DELETE",
       headers: authHeaders(),
     });
@@ -110,6 +113,7 @@ export function SiteContentPanel({ authHeaders, onMessage, onError }: SiteConten
 
   return (
     <div className="space-y-6">
+      <AdminLocalePicker locale={locale} onChange={setLocale} />
       <div className="flex flex-wrap gap-2">
         {(Object.keys(SECTION_LABELS) as SiteContentSection[]).map((key) => (
           <button

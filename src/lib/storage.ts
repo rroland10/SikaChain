@@ -8,7 +8,10 @@ const LOCAL_ROOT = path.join(process.cwd(), "data");
 const APPLICATIONS_PREFIX = "applications/";
 const PROMOTED_PATH = "showcase/promoted.json";
 export const INSIGHTS_PREFIX = "content/insights/";
-export const SITE_CONTENT_PATH = "content/site.json";
+
+export function siteContentPath(locale: string): string {
+  return `content/site/${locale}.json`;
+}
 
 export function getStorageBackend(): StorageBackend {
   return process.env.BLOB_READ_WRITE_TOKEN ? "blob" : "local";

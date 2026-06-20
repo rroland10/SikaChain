@@ -6,6 +6,8 @@ import {
   updateInsight,
 } from "@/lib/cms/insights-store";
 import type { CreateInsightInput, UpdateInsightInput } from "@/lib/cms/types";
+import { isLocale } from "@/lib/cms/site-content-store";
+import { routing, type Locale } from "@/i18n/routing";
 
 export const runtime = "nodejs";
 
@@ -13,10 +15,16 @@ function unauthorized() {
   return Response.json({ error: "Unauthorized" }, { status: 401 });
 }
 
+function parseLocale(value: unknown): Locale {
+  return typeof value === "string" && isLocale(value) ? value : routing.defaultLocale;
+}
+
 export async function GET(request: Request) {
   if (!verifyAdminToken(request)) return unauthorized();
 
-  const posts = await listAllInsights();
+  const localeParam = new URL(request.url).searchParams.get("locale");
+  const locale = localeParam && isLocale(localeParam) ? localeParam : undefined;
+  const posts = await listAllInsights(locale);
   return Response.json({ posts });
 }
 
@@ -29,7 +37,7 @@ export async function POST(request: Request) {
       return Response.json({ error: "Title is required" }, { status: 400 });
     }
 
-    const post = await createInsight(body);
+    const post = await createInsight({ ...body, locale: parseLocale(body.locale) });
     return Response.json({ post, message: "Insight created as draft" }, { status: 201 });
   } catch {
     return Response.json({ error: "Invalid request body" }, { status: 400 });

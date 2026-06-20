@@ -1,8 +1,11 @@
+import type { Locale } from "@/i18n/routing";
+
 export type PostStatus = "draft" | "published";
 
 export type InsightPost = {
   id: string;
   slug: string;
+  locale: Locale;
   title: string;
   excerpt: string;
   body: string;
@@ -58,6 +61,7 @@ export type SiteContentSection = "announce" | "press" | "home";
 
 export type CreateInsightInput = {
   title: string;
+  locale?: Locale;
   slug?: string;
   excerpt?: string;
   body?: string;

@@ -1,12 +1,32 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useState } from "react";
-import { primaryNavLinks, secondaryNavLinks } from "@/lib/docs-content";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+
+const navLinks = [
+  { href: "/genesis", key: "genesis" },
+  { href: "/candidates", key: "candidates" },
+  { href: "/testnet", key: "testnet" },
+  { href: "/ghana", key: "ghana" },
+  { href: "/docs", key: "docs" },
+  { href: "/producers", key: "producers" },
+  { href: "/governance", key: "governance" },
+  { href: "/roadmap", key: "roadmap" },
+  { href: "/sika-app", key: "sikaApp" },
+  { href: "/developers", key: "developers" },
+  { href: "/explorer", key: "explorer" },
+  { href: "/announce", key: "announce" },
+  { href: "/insights", key: "insights" },
+  { href: "/press", key: "press" },
+  { href: "/status", key: "status" },
+] as const;
 
 export function MobileNav() {
+  const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -38,9 +58,12 @@ export function MobileNav() {
               transition={{ type: "spring", stiffness: 320, damping: 32 }}
               className="glass-panel fixed inset-y-0 right-0 z-50 flex w-[min(100vw-3rem,20rem)] flex-col overflow-y-auto p-6"
             >
-              <p className="section-tag mb-4">Menu</p>
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <p className="section-tag">Menu</p>
+                <LanguageSwitcher />
+              </div>
               <div className="space-y-1">
-                {[...primaryNavLinks, ...secondaryNavLinks].map((link) => (
+                {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -51,7 +74,7 @@ export function MobileNav() {
                         : "text-sika-cream/75 hover:bg-white/5"
                     }`}
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 ))}
               </div>
@@ -60,7 +83,7 @@ export function MobileNav() {
                 onClick={() => setOpen(false)}
                 className="btn-primary btn-shine mt-6 text-center text-sm"
               >
-                Apply as producer
+                {tCommon("apply")}
               </Link>
             </motion.nav>
           </>

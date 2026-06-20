@@ -1,24 +1,32 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import { ArticleBody } from "@/components/content/ArticleBody";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { PageHero, SectionBlock } from "@/components/PageSections";
 import { getPublishedInsightBySlug, listPublishedInsights } from "@/lib/cms/insights-store";
+import { routing, type Locale } from "@/i18n/routing";
 
 type PageProps = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: Locale; slug: string }>;
 };
 
 export async function generateStaticParams() {
-  const posts = await listPublishedInsights();
-  return posts.map((post) => ({ slug: post.slug }));
+  const params: { locale: Locale; slug: string }[] = [];
+  for (const locale of routing.locales) {
+    const posts = await listPublishedInsights(locale);
+    for (const post of posts) {
+      params.push({ locale, slug: post.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPublishedInsightBySlug(slug);
+  const { locale, slug } = await params;
+  const post = await getPublishedInsightBySlug(slug, locale);
 
   if (!post) {
     return { title: "Insight not found" };
@@ -37,8 +45,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function InsightDetailPage({ params }: PageProps) {
-  const { slug } = await params;
-  const post = await getPublishedInsightBySlug(slug);
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "common" });
+  const post = await getPublishedInsightBySlug(slug, locale);
 
   if (!post) {
     notFound();
@@ -51,8 +61,8 @@ export default async function InsightDetailPage({ params }: PageProps) {
         title={post.title}
         lead={post.excerpt}
         imageSrc={post.coverImage}
-        primaryCta={{ href: "/insights", label: "All insights" }}
-        secondaryCta={{ href: "/apply", label: "Apply as producer" }}
+        primaryCta={{ href: "/insights", label: t("allInsights") }}
+        secondaryCta={{ href: "/apply", label: t("apply") }}
       />
 
       <SectionBlock tag="Article" title={post.title} className="pb-24">
@@ -64,7 +74,10 @@ export default async function InsightDetailPage({ params }: PageProps) {
                 <>
                   <span>·</span>
                   <time dateTime={post.publishedAt}>
-                    {new Date(post.publishedAt).toLocaleDateString("en-GB", { dateStyle: "long" })}
+                    {new Date(post.publishedAt).toLocaleDateString(
+                      locale === "fr" ? "fr-FR" : locale === "ak" ? "en-GH" : "en-GB",
+                      { dateStyle: "long" },
+                    )}
                   </time>
                 </>
               )}
@@ -95,7 +108,7 @@ export default async function InsightDetailPage({ params }: PageProps) {
 
         <div className="mx-auto mt-10 max-w-3xl">
           <Link href="/insights" className="text-sm font-semibold text-sika-gold hover:underline">
-            ← Back to insights
+            {t("backToInsights")}
           </Link>
         </div>
       </SectionBlock>

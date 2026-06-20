@@ -3,7 +3,7 @@
 set -euo pipefail
 
 RPC="${SIKACHAIN_RPC_URL:-http://127.0.0.1:8888}"
-SITE="${NEXT_PUBLIC_SITE_URL:-http://127.0.0.1:3004}"
+SITE="${NEXT_PUBLIC_SITE_URL:-http://127.0.0.1:3004}/en"
 APP="${NEXT_PUBLIC_SIKA_APP_URL:-http://127.0.0.1:3003}"
 PASS=0
 FAIL=0

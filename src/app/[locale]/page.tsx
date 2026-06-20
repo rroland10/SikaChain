@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { HeroCinematic } from "@/components/ui/HeroCinematic";
 import { LuxuryImageFrame } from "@/components/ui/LuxuryImageFrame";
 import { MetricsTicker } from "@/components/ui/MetricsTicker";
@@ -14,14 +14,22 @@ import {
 } from "@/components/PageSections";
 import { FadeIn, FadeInStagger } from "@/components/motion/FadeIn";
 import { readSiteContentSection } from "@/lib/cms/site-content-store";
+import type { Locale } from "@/i18n/routing";
+import { setRequestLocale } from "next-intl/server";
 import {
   launchSequence,
   producerComposition,
   timeline,
 } from "@/lib/content";
 
-export default async function HomePage() {
-  const home = await readSiteContentSection("home");
+type PageProps = {
+  params: Promise<{ locale: Locale }>;
+};
+
+export default async function HomePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const home = await readSiteContentSection("home", locale);
 
   return (
     <>

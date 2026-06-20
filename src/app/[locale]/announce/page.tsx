@@ -1,17 +1,29 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { ArticleBody } from "@/components/content/ArticleBody";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { PageHero, SectionBlock } from "@/components/PageSections";
 import { readSiteContentSection } from "@/lib/cms/site-content-store";
+import type { Locale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Launch Announcement",
-  description: "Official SikaChain launch messaging — mobile money settlement network launching in Ghana.",
+type PageProps = {
+  params: Promise<{ locale: Locale }>;
 };
 
-export default async function AnnouncePage() {
-  const announce = await readSiteContentSection("announce");
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "nav" });
+  return {
+    title: t("announce"),
+    description: "Official SikaChain launch messaging — mobile money settlement network launching in Ghana.",
+  };
+}
+
+export default async function AnnouncePage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const announce = await readSiteContentSection("announce", locale);
 
   return (
     <>
