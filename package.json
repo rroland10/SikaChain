@@ -16,7 +16,8 @@
     "verify:dev": "bash ../AntelopeOS/spring/sikachaindev/scripts/quick-verify.sh",
     "verify:dev:full": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-stack.sh",
     "verify:launch-ready": "bash ../AntelopeOS/spring/sikachaindev/scripts/check-launch-ready.sh",
-    "verify:gh-v1": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-gh-v1.sh"
+    "verify:gh-v1": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-gh-v1.sh",
+    "verify:predeploy": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-predeploy.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.4.1",
