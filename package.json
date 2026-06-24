@@ -12,7 +12,11 @@
     "deploy:preview": "npx vercel",
     "sync:chain": "node scripts/sync-chain-config.mjs",
     "dev:stack": "bash scripts/dev-stack.sh",
-    "verify:stack": "bash scripts/verify-stack.sh"
+    "verify:stack": "bash scripts/verify-stack.sh",
+    "verify:dev": "bash ../AntelopeOS/spring/sikachaindev/scripts/quick-verify.sh",
+    "verify:dev:full": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-stack.sh",
+    "verify:launch-ready": "bash ../AntelopeOS/spring/sikachaindev/scripts/check-launch-ready.sh",
+    "verify:gh-v1": "bash ../AntelopeOS/spring/sikachaindev/scripts/verify-gh-v1.sh"
   },
   "dependencies": {
     "@vercel/blob": "^2.4.1",
