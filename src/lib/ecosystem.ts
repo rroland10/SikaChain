@@ -1,7 +1,14 @@
 import { sikaChainDev } from "@/lib/chain-constants";
+import { hasPublicAppUrl } from "@/lib/public-mode";
 
 export function getSikaAppUrl(): string {
   return process.env.NEXT_PUBLIC_SIKA_APP_URL || sikaChainDev.appUrl;
+}
+
+/** Production app URL when configured; null on localhost-only setups. */
+export function getPublicSikaAppUrl(): string | null {
+  if (!hasPublicAppUrl()) return null;
+  return process.env.NEXT_PUBLIC_SIKA_APP_URL!;
 }
 
 export function getSiteUrl(): string {
@@ -20,7 +27,7 @@ export const ecosystemStack = [
   {
     layer: "L2",
     name: "sika.* contracts",
-    description: "System, token, REX, guard, rep, rules @ eosio",
+    description: "System, token, REX, guard, rep, rules @ sika",
     href: "/developers",
     external: false,
   },
