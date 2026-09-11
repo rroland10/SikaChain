@@ -24,7 +24,7 @@
   "dependencies": {
     "@vercel/blob": "^2.4.1",
     "framer-motion": "^12.40.0",
-    "next": "^15.5.19",
+    "next": "^15.5.25",
     "next-intl": "^4.13.0",
     "react": "^18",
     "react-dom": "^18"
